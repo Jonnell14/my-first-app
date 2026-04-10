@@ -1,6 +1,9 @@
 import streamlit as st
 from openai import OpenAI
 
+# This line grabs the key from the "Secret vault" you just filled
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
 st.set_page_config(page_title="AI RAG Chatbot", layout="wide")
 st.title("📄 AI Document Assistant")
 
