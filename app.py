@@ -1,17 +1,16 @@
-from flask import Flask, render_template, request
+import streamlit as st
 
-app = Flask(__name__)
+# 1. Set up the title of your web page
+st.title("My Online Chatbot")
 
-@app.route("/", methods=["GET", "POST"])
-def index():
-    reply = "Page loaded successfully"
+# 2. Create a place for the user to type
+user_input = st.chat_input("Type your message here...")
 
-    if request.method == "POST":
-        user_input = request.form["message"]
-        reply = "You said: " + user_input
-
-    return render_template("index.html", reply=reply)
-
-if __name__ == "__main__":
-    app.run(debug=False)
-
+# 3. If the user types something, show it on the screen
+if user_input:
+    with st.chat_message("user"):
+        st.write(user_input)
+    
+    # This is where the bot "thinks"
+    with st.chat_message("assistant"):
+        st.write(f"You said: {user_input}. I'm working on getting my AI brain connected!")
